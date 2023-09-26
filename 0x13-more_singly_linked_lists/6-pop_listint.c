@@ -8,25 +8,26 @@
  */
 int pop_listint(listint_t **head)
 {
-    int data = 0;  /* Initialize data to 0. */
+	int data = 0;  /* Initialize data to 0. */
 
-    if (*head != NULL)
-    {
-        listint_t *temp;  /* Declare a temporary pointer. */
+	if (*head != NULL)
+	{
+		listint_t *temp;  /* Declare a temporary pointer. */
 
-        /* Save the data from the current head node. */
-        data = (*head)->n;
+		/* Save the data from the current head node. */
+		data = (*head)->n;
 
-        /* Save the current head node in a temporary pointer. */
-        temp = *head;
+		/* Save the current head node in a temporary pointer. */
+		temp = *head;
 
-        /* Move the head pointer to the next node. */
-        *head = (*head)->next;
+		/* Move the head pointer to the next node. */
+		*head = (*head)->next;
 
-        /* Free the memory of the old head node. */
-        free(temp);
-    }
+		/* Free the memory of the old head node. */
+		free(temp);
+	}
 
-    return (data);  /* Return the data of the deleted head node (or 0 if the list is empty). */
+	/* Return the data of the deleted head node (or 0 if the list is empty). */
+	return (data);
 }
 

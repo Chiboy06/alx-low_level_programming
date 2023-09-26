@@ -9,19 +9,23 @@
  */
 listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 {
-    unsigned int count = 0;  /* Initialize a count variable to keep track of the position. */
+	/* Initialize a count variable to keep track of the position. */
+	unsigned int count = 0;
 
-    while (head != NULL)
-    {
-        if (count == index)
-        {
-            return (head);  /* Return the current node when the index matches the count. */
-        }
+	while (head != NULL)
+	{
+		if (count == index)
+		{
+			/* Return the current node when the index matches the count. */
+			return (head);
+		}
+	}
 
-        head = head->next;  /* Move to the next node. */
-        count++;           /* Increment the count. */
-    }
+	head = head->next;  /* Move to the next node. */
+	count++;           /* Increment the count. */
+	}
 
-    return (NULL);  /* Return NULL if the node at the given index does not exist. */
+	/* Return NULL if the node at the given index does not exist. */
+	return (NULL);
 }
 

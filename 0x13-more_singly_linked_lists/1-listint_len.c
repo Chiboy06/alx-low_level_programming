@@ -8,13 +8,13 @@
  */
 size_t listint_len(const listint_t *h)
 {
-    size_t count = 0;  /* Initialize a count variable to 0. */
+	size_t count = 0;  /* Initialize a count variable to 0. */
 
-    while (h != NULL)
-    {
-        count++;      /* Increment the count for each node. */
-        h = h->next;  /* Move to the next node. */
-    }
+	while (h != NULL)
+	{
+		count++;      /* Increment the count for each node. */
+		h = h->next;  /* Move to the next node. */
+	}
 
-    return (count);  /* Return the total count. */
+	return (count);  /* Return the total count. */
 }

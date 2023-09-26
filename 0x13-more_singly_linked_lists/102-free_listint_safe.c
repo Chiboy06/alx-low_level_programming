@@ -8,25 +8,25 @@
  */
 size_t free_listint_safe(listint_t **h)
 {
-    size_t node_count = 0;
-    listint_t *current = *h;
-    listint_t *temp = NULL;
+	size_t node_count = 0;
+	listint_t *current = *h;
+	listint_t *temp = NULL;
 
-    while (current != NULL)
-    {
-        node_count++;
-        temp = current;
-        current = current->next;
-        free(temp);
+	while (current != NULL)
+	{
+		node_count++;
+		temp = current;
+		current = current->next;
+		free(temp);
 
-        if (temp <= current)
-        {
-            /* Check for a loop condition. */
-            *h = NULL;
-            break;
-        }
-    }
+		if (temp <= current)
+		{
+			/* Check for a loop condition. */
+			*h = NULL;
+			break;
+		}
+	}
 
-    return (node_count);
+	return (node_count);
 }
 

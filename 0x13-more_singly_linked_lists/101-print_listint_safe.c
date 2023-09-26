@@ -8,31 +8,31 @@
  */
 size_t print_listint_safe(const listint_t *head)
 {
-    size_t node_count = 0;
-    const listint_t *current = head;
-    const listint_t *loop_node = NULL;
+	size_t node_count = 0;
+	const listint_t *current = head;
+	const listint_t *loop_node = NULL;
 
-    while (current != NULL)
-    {
-        printf("[%p] %d\n", (void *)current, current->n);
-        node_count++;
+	while (current != NULL)
+	{
+		printf("[%p] %d\n", (void *)current, current->n);
+		node_count++;
 
-        if (current >= current->next)
-        {
-            /* Check for a loop condition. */
-            loop_node = current->next;
-            break;
-        }
+		if (current >= current->next)
+		{
+			/* Check for a loop condition. */
+			loop_node = current->next;
+			break;
+		}
 
-        current = current->next;
-    }
+		current = current->next;
+	}
 
-    if (loop_node != NULL)
-    {
-        printf("-> [%p] %d\n", (void *)loop_node, loop_node->n);
-        exit(98); /* Exit with status 98 if a loop is detected. */
-    }
+	if (loop_node != NULL)
+	{
+		printf("-> [%p] %d\n", (void *)loop_node, loop_node->n);
+		exit(98); /* Exit with status 98 if a loop is detected. */
+	}
 
-    return (node_count);
+	return (node_count);
 }
 
