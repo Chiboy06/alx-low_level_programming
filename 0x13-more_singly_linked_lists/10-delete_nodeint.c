@@ -1,47 +1,47 @@
 #include "lists.h"
 
 /**
- * delete_nodeint_at_index - Deletes the node at a given position in a listint_t list.
- * @head: A pointer to a pointer to the head of the listint_t list.
- * @index: The index of the node to be deleted.
+ * delete_nodeint_at_index - Deletes the node at a given index in a listint_t list.
+ * @head: A pointer to a pointer to the head of the list.
+ * @index: The index of the node to delete.
  *
  * Return: 1 if it succeeded, -1 if it failed.
  */
 int delete_nodeint_at_index(listint_t **head, unsigned int index)
 {
-    listint_t *current, *temp;
-    unsigned int i = 0;
+    listint_t *aux_node = *head;
+    listint_t *node_to_delete = *head;
+    unsigned int idx;
+    unsigned int cont = 0;
 
-    if (*head == NULL)
-        return (-1);  /* Return -1 if the list is empty. */
+    /* Check for an empty list */
+    if (!(*head))
+        return (-1);
 
+    /* Check for deleting at the beginning */
     if (index == 0)
     {
-        /* Delete the first node. */
-        temp = *head;
-        *head = (*head)->next;
-        free(temp);
+        *head = node_to_delete->next;
+        free(node_to_delete);
         return (1);
     }
 
-    current = *head;
-
-    while (current != NULL)
+    /* Search for the position to delete */
+    idx = index - 1;
+    while (aux_node && cont != idx)
     {
-        if (i == index - 1)
-        {
-            /* Delete the node at the specified position. */
-            temp = current->next;
-            if (temp == NULL)
-                return (-1); /* Return -1 if index is out of range. */
-            current->next = temp->next;
-            free(temp);
-            return (1);
-        }
-        current = current->next;
-        i++;
+        cont++;
+        aux_node = aux_node->next;
     }
 
-    return (-1); /* Return -1 if index is out of range. */
-}
+    /* General case */
+    if (cont == idx && aux_node)
+    {
+        node_to_delete = aux_node->next;
+        aux_node->next = node_to_delete->next;
+        free(node_to_delete);
+        return (1);
+    }
 
+    return (-1);
+}

@@ -1,31 +1,31 @@
 #include "lists.h"
 
 /**
- * get_nodeint_at_index - Returns the nth node of a listint_t linked list.
- * @head: A pointer to the head of the listint_t list.
- * @index: The index of the node to retrieve, starting at 0.
+ * print_listint_safe - Prints a listint_t linked list safely.
+ * @head: A pointer to the head of the list.
  *
- * Return: A pointer to the nth node, or NULL if the node does not exist.
- */
-listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
+ * Return: The number of nodes in the list.
+ **/
+size_t print_listint_safe(const listint_t *head)
 {
-	/* Initialize a count variable to keep track of the position. */
-	unsigned int count = 0;
+    size_t node_count = 0;
+    const listint_t *current = head;
 
-	while (head != NULL)
-	{
-		if (count == index)
-		{
-			/* Return the current node when the index matches the count. */
-			return (head);
-		}
-	}
+    if (!head)
+        return (0);
 
-	head = head->next;  /* Move to the next node. */
-	count++;           /* Increment the count. */
-	}
+    while (current)
+    {
+        printf("[%p] %d\n", (void *)current, current->n);
+        node_count++;
+        if (current >= current->next)
+        {
+            printf("-> [%p] %d\n", (void *)current->next, current->next->n);
+            break;
+        }
+        current = current->next;
+    }
 
-	/* Return NULL if the node at the given index does not exist. */
-	return (NULL);
+    return (node_count);
 }
 
