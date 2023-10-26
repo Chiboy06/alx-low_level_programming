@@ -6,7 +6,7 @@
  *
  * Return: natural square root of number, -1 otherwise
  */
-int _sqrt_recursion(int x)
+int _sqrt_recursion(int n)
 {
 	if (n < 0)
 	{
