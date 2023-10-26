@@ -21,7 +21,7 @@ int is_palindrome_recursive(char *s, int start, int end)
 	return (0);
 }
 
-int is_palindrome(char *s)
+int is_palindrome(char *s, int start, int end)
 {
 	int length = strlen(s);
 
