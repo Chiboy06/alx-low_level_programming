@@ -16,7 +16,7 @@ int divisible(int n, int divisor)
 	{
 		return (1);
 	}
-	return divisible(n, divisor - 1);
+	return (divisible(n, divisor - 1));
 }
 
 int is_prime_number(int n, int divisor)
@@ -37,5 +37,5 @@ int is_prime_number(int n, int divisor)
 	{
 		return (0);
 	}
-	return is_prime_number(n, divisor - 1);
+	return (is_prime_number(n, divisor - 1));
 }
