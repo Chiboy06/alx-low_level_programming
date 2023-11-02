@@ -4,51 +4,48 @@
 
 /**
  * argstostr - concatenates all the arguments of your program.
+ *
  * @ac: arguments count
  * @av: arguments vector
  *
  * Return: a pointer to a new string, or NULL if it fails
  */
-char **strtow(char *str)
-{
-	void *word;
-	char **words, *p;
-	size_t num_words = 0;
-	size_t i;
-
-	/* Check if str is NULL or empty. */
-	if (str == NULL || *str == '\0'){
+char *argstostr(int ac, char **av) {
+	size_t len, offset;
+	char *str, *s;
+	int i = 0;
+	/* Check if ac is 0 or av is NULL. */
+	if (ac == 0 || av == NULL) {
 		return NULL;
 	}
-
-	/* Count the number of words in the string. */
-	p = str;
-	while (*p != '\0')
+	/* Calculate the total length of the new string. */
+	len = 0;
+	while (i < ac)
 	{
-		if (*p == ' ')
-		{
-			num_words++;
+		len += strlen(av[i]) + 1; 
+		i++;
+		/* +1 for the newline character */
+	}
+	/* Allocate memory for the new string. */
+	str = malloc(len + 1);
+	if (str == NULL)
+	{
+		return NULL;
+	}
+	/* Copy the arguments to the new string, separated by newline characters. */
+	offset = 0;
+	while (i < ac)
+	{
+		s = av[i];
+		while (*s) {
+			str[offset++] = *s;
+			s++;
 		}
-		p++;
+		i++;
+		str[offset++] = '\n';
 	}
-	
-	/* Allocate memory for the array of words. */
-	words = malloc(sizeof(char *) * (num_words + 1));
-	if (words == NULL)
-		return NULL;
-	
-	/* Split the string into words and store them in the array. */
-	i = 0;
-	word = (char *)strtok(str, " ");
-	while (word != NULL)
-	{
-		words[i++] = (char *)word;
-		word = (char *)strtok(NULL, " ");
-	}
-	
-	/* Add a null terminator to the end of the array. */
-	words[i] = NULL;
-	
-	return words;
+	/* Add a null terminator to the end of the new string. */
+	str[offset] = '\0';
+	return str;
 }
 
