@@ -1,5 +1,5 @@
 #include "lists.h"
-#include <stdlib.h>
+#include <string.h>
 /**
   * add_node - add new nodes to the list
   * @head: current place in the list
@@ -8,22 +8,30 @@
   */
 list_t *add_node(list_t **head, const char *str)
 {
-	list_t *new_node = malloc(sizeof(list_t));
-	if (!new_node)
-	{
-		return NULL;
-	}
+	char *dup;
+	int len;
+	list_t *new_node;
 
-	new_node->str = strdup(str);
+	new_node = malloc(sizeof(list_t));
+	if (new_node == NULL)
+		return (NULL);
 
-	if (!new_node->str)
+	dup = strdup(str);
+	if (dup == NULL)
 	{
 		free(new_node);
-		return NULL;
+		return (NULL);
 	}
 
+	for (len = 0; str[len];)
+		len++;
+
+	new_node->str = dup;
+	new_node->len = len;
 	new_node->next = *head;
+
 	*head = new_node;
 
-	return new_node;
+	return (new_node);
 }
+
