@@ -12,7 +12,10 @@ listint_t *reverse_listint(listint_t **head)
 	listint_t *current = *head;
 	listint_t *next;
 
-	while (current != NULL)
+	if (head == NULL || *head == NULL)
+		return (NULL);
+
+	while (current->next != NULL)
 	{
 		next = current->next;  /* Save the next node. */
 		current->next = prevs;  /* Reverse the pointer direction. */
@@ -20,7 +23,7 @@ listint_t *reverse_listint(listint_t **head)
 		current = next;
 	}
 
-	*head = prevs;  /* Update the head pointer to the new head. */
+	*head->next = prevs;  /* Update the head pointer to the new head. */
 	return (*head);
 }
 
